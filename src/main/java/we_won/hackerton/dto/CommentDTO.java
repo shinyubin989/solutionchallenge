@@ -9,6 +9,7 @@ public class CommentDTO {
   @AllArgsConstructor
   @NoArgsConstructor
   public static class CommentRequest {
+    private Long articleId;
     private String nickname;
     private Boolean isSecret;
     private String content;

@@ -11,20 +11,19 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
+@RequestMapping("/api/comments")
 public class CommentController {
 
   @Autowired
   private CommentService commentService;
 
-  @GetMapping("/{articleId}/comment")
+  @GetMapping("")
   public List<CommentDTO.CommentResponse> getComments(@PathVariable("articleId") Long articleId) {
     return commentService.getComments(articleId);
   }
 
-  @PostMapping("/{articleId}/comment")
-  public ResponseEntity<?> postComment(@PathVariable("articleId") Long articleId,
-                                       @RequestBody CommentDTO.CommentRequest commentDto) {
-    return commentService.postComments(articleId, commentDto);
+  @PostMapping("")
+  public ResponseEntity<?> postComment(@RequestBody CommentDTO.CommentRequest commentDto) {
+    return commentService.postComments(commentDto);
   }
 }

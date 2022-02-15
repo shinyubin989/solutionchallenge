@@ -27,14 +27,14 @@ public class CommentService {
   private final ModelMapper modelMapper;
 
 
-  public ResponseEntity<?> postComments(Long articleId, CommentDTO.CommentRequest request) {
+  public ResponseEntity<?> postComments(CommentDTO.CommentRequest request) {
 
     Comment comment = modelMapper.map(request, Comment.class);
-    Article article = articleRepository.getById(articleId);
+    Article article = articleRepository.getById(request.getArticleId());
     if (userRepository.findByNickname(request.getNickname()) != null) {
       comment.setUser(userRepository.findByNickname(request.getNickname()));
     }
-    comment.setArticle(articleRepository.getById(articleId));
+    comment.setArticle(articleRepository.getById(request.getArticleId()));
     article.setComment_num(article.getComment_num()+1);
     articleRepository.save(article);
     commentRepository.save(comment);
