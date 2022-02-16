@@ -26,4 +26,9 @@ public class CommentController {
   public ResponseEntity<?> postComment(@RequestBody CommentDTO.CommentRequest commentDto) {
     return commentService.postComments(commentDto);
   }
+
+  @DeleteMapping("")
+  public ResponseEntity<?> deleteComment(@RequestBody CommentDTO.CommentDeleteRequest request) {
+    return commentService.deleteComment(request);
+  }
 }
