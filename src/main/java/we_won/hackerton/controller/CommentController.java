@@ -17,8 +17,9 @@ public class CommentController {
   @Autowired
   private CommentService commentService;
 
-  @GetMapping("")
+  @GetMapping("/{articleId}")
   public List<CommentDTO.CommentResponse> getComments(@PathVariable("articleId") Long articleId) {
+    System.out.println("Controller의 articleId" + articleId);
     return commentService.getComments(articleId);
   }
 

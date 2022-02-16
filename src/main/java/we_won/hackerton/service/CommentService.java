@@ -50,13 +50,15 @@ public class CommentService {
   }
 
   public List<CommentDTO.CommentResponse> getComments(Long articleId) {
+    System.out.println("service의 articleId" + articleId);
     List<Comment> comments = commentRepository.findAllByArticle_Id(articleId);
-
+    System.out.println("servicec의 commentes " + comments);
     List<CommentDTO.CommentResponse> commentDTOList = new ArrayList<>();
 
     for (Comment comment : comments) {
       commentDTOList.add(commentMapper.toDomain(comment));
     }
+    System.out.println("servicec의 CommentDTO.CommentResponse " + commentDTOList);
     return commentDTOList;
 
 //    List<CommentDTO> commentDTOList = null;
