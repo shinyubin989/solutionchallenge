@@ -22,13 +22,12 @@ public class LikeController {
 //    return likeService.clickLike(request);
 //  }
 
-
   /*
   String nickname;
   Long commentId;
    */
 
-  @PostMapping("") //기사 스크랩할 때
+  @PostMapping("")
   public ResponseEntity<?> clickLike(@RequestBody CommentLikeDTO commentLikeDTO){
     return likeService.clickLike(commentLikeDTO.getNickname(),commentLikeDTO.getCommentId());
   }

@@ -8,6 +8,6 @@ import we_won.hackerton.entity.UserArticleScrap;
 import java.util.List;
 
 public interface UserCommentDAO extends JpaRepository<CommentLike, CommentLikeID> {
-  CommentLike findByUser_id(long user_id);
-  CommentLike findByComment_id(long comment_id);
+//  CommentLike findByUser_id(long user_id);
+//  CommentLike findByComment_id(long comment_id);
 }

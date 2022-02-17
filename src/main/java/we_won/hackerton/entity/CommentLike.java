@@ -13,19 +13,12 @@ import java.util.Optional;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@IdClass(CommentLikeID.class)
 public class CommentLike extends BaseEntity {
 
-  @Id
-  @ManyToOne
-  @JsonBackReference
-  @JoinColumn(name = "user_id")
-  private User_ user;
+  @Column(nullable = false)
+  private Long userId;
 
-  @Id
-  @ManyToOne
-  @JsonBackReference
-  @JoinColumn(name = "comment_id")
-  private Comment comment;
+  @Column(nullable = false)
+  private Long commentId;
 
 }
