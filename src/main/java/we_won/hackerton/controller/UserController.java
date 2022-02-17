@@ -38,9 +38,4 @@ public class UserController {
 
         return new ResponseEntity<>("Success!", HttpStatus.OK);
     }
-
-//    @PostMapping("/articles") //기사 스크랩할 때
-//    public ResponseEntity<?> scrapArticle(@RequestBody UserArticleScrapDTO userArticleScrapDTO){
-//        return userService.scrapArticle(userArticleScrapDTO.getUsername(),userArticleScrapDTO.getArticle_id());
-//    }
 }
