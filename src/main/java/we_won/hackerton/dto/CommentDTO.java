@@ -30,6 +30,15 @@ public class CommentDTO {
     private String createdAt;
   }
 
+  @Getter
+  @Setter
+  @AllArgsConstructor
+  @NoArgsConstructor
+  public static class CommentDeleteRequest {
+    private Long commentId; // 삭제하려는 코멘트의 아이디
+    private String nickname; // 삭제하려는 유저의 닉네임
+  }
+
 }
 
 

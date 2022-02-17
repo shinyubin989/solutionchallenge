@@ -15,4 +15,8 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
   List<Comment> findAllByArticle_Id(@Param(value = "articleId") Long articleId);
 
   Comment findByUser(User_ byNickname);
+
+  Optional<Comment> findById(Long id);
+
+
 }

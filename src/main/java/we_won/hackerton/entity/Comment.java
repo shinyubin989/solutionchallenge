@@ -1,10 +1,13 @@
 package we_won.hackerton.entity;
 
 import lombok.*;
+import org.springframework.data.relational.core.sql.Like;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
