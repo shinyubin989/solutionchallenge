@@ -32,8 +32,9 @@ public class CommentController {
 //  public ResponseEntity<?> deleteComment(@RequestBody CommentDTO.CommentDeleteRequest request) {
 //    return commentService.deleteComment(request);
 //  }
-  @DeleteMapping("/{nickname}/{commentId}")
-  public ResponseEntity<?> deleteComment(@PathVariable("nickname") String nickname, @PathVariable("commentId") Long commentId) {
-    return commentService.deleteComment(nickname,commentId);
+  @DeleteMapping("/{nickname}/{articleId}/{commentId}")
+  public ResponseEntity<?> deleteComment(@PathVariable("nickname") String nickname, @PathVariable("commentId") Long commentId
+  ,@PathVariable("articleId") Long articleId) {
+    return commentService.deleteComment(nickname,commentId,articleId);
   }
 }

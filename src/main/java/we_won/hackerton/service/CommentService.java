@@ -50,15 +50,15 @@ public class CommentService {
   }
 
   public List<CommentDTO.CommentResponse> getComments(Long articleId) {
-    System.out.println("service의 articleId" + articleId);
+    //System.out.println("service의 articleId" + articleId);
     List<Comment> comments = commentRepository.findAllByArticle_Id(articleId);
-    System.out.println("servicec의 commentes " + comments);
+    //System.out.println("servicec의 commentes " + comments);
     List<CommentDTO.CommentResponse> commentDTOList = new ArrayList<>();
 
     for (Comment comment : comments) {
       commentDTOList.add(commentMapper.toDomain(comment));
     }
-    System.out.println("servicec의 CommentDTO.CommentResponse " + commentDTOList);
+    //System.out.println("servicec의 CommentDTO.CommentResponse " + commentDTOList);
     return commentDTOList;
 
 //    List<CommentDTO> commentDTOList = null;
@@ -70,10 +70,18 @@ public class CommentService {
 //    return commentDTOList;
   }
 
-  public ResponseEntity<?> deleteComment(String nickname, Long commentId) {
+  public ResponseEntity<?> deleteComment(String nickname, Long commentId,Long articleId) {
     Optional<Comment> comment = commentRepository.findById(commentId);
     if (Objects.equals(nickname, comment.get().getUser().getNickname())) {
       commentRepository.deleteById(commentId);
+      //삭제를 했으니..
+      //다시 article_id로 commentRepository에서 댓글 개수를 찾아주고
+      //그걸 article entity에 setter 해주고 다시 저장..?
+      List<Comment> comments = commentRepository.findAllByArticle_Id(articleId); //articleid로 모든 댓글을 찾아줌
+      int comments_num = comments.size(); //기사에 대한 모든 댓글 개수
+      Optional<Article> article = articleRepository.findById(articleId); //뉴스 기사를 찾아주고
+      article.get().setComment_num(comments_num); //개수 업데이트 해주고
+      articleRepository.save(article.get()); //다시 저장
       return new ResponseEntity<>("댓글을 삭제했습니다.", HttpStatus.OK);
     } else {
       return new ResponseEntity<>("댓글을 삭제할 수 없습니다.", HttpStatus.BAD_REQUEST);
