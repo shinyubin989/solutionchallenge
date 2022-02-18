@@ -70,10 +70,10 @@ public class CommentService {
 //    return commentDTOList;
   }
 
-  public ResponseEntity<?> deleteComment(@RequestBody CommentDTO.CommentDeleteRequest request) {
-    Optional<Comment> comment = commentRepository.findById(request.getCommentId());
-    if (Objects.equals(request.getNickname(), comment.get().getUser().getNickname())) {
-      commentRepository.deleteById(request.getCommentId());
+  public ResponseEntity<?> deleteComment(String nickname, Long commentId) {
+    Optional<Comment> comment = commentRepository.findById(commentId);
+    if (Objects.equals(nickname, comment.get().getUser().getNickname())) {
+      commentRepository.deleteById(commentId);
       return new ResponseEntity<>("댓글을 삭제했습니다.", HttpStatus.OK);
     } else {
       return new ResponseEntity<>("댓글을 삭제할 수 없습니다.", HttpStatus.BAD_REQUEST);
