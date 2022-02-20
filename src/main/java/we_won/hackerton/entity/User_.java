@@ -17,7 +17,7 @@ public class User_ extends BaseEntity{
 
     @Column(nullable = false)
     private String password;
-    //travis용 주석
+    //travis용 주석ㅎㅇㅎㅇ
     @Column(nullable = false,unique = true)
     private String nickname;
 
