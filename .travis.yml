@@ -26,7 +26,7 @@ script: "./gradlew clean build"
 
 #CI 실행 완료 시 작성한 이메일로 알람##
 before_deploy:
-  # 현재 위치의 모든 파일을 springboot-test로 압축한다.
+  # 현재 위치의 모든 파일을 springboot-test로 압축한다..
   - zip -r freelec-springboot2-webservice *
   # deploy 디렉토리를 Travis가 실행 중인 위치에 생성한다.
   - mkdir -p deploy
