@@ -14,7 +14,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/users")
+@RequestMapping(value = "/api/users", produces = "text/plain;charset=UTF-8")
 public class UserController {
 
     private final UserServiceImpl userService;
