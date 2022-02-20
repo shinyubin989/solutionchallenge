@@ -44,7 +44,7 @@ public class CommentService {
     articleRepository.save(article);
     commentRepository.save(comment);
 
-    final SuccessAndFailureResponse successAndFailureResponse = new SuccessAndFailureResponse("댓글 작성을 완료했습니다.",HttpStatus.OK);
+    final SuccessAndFailureResponse successAndFailureResponse = new SuccessAndFailureResponse("댓글 작성을 완료했습니다.",200);
     return new ResponseEntity<>(successAndFailureResponse, HttpStatus.OK);
 
   }

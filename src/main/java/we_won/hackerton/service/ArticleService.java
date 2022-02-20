@@ -48,7 +48,7 @@ public class ArticleService {
 
         final Optional<User_> user = userRepository.findByUsername(username);
         final Optional<Article> article = articleRepository.findById(article_id);
-        final SuccessAndFailureResponse result = new SuccessAndFailureResponse("스크랩을 성공했습니다.",HttpStatus.OK);
+        final SuccessAndFailureResponse result = new SuccessAndFailureResponse("스크랩을 성공했습니다.",200);
         final UserArticleScrap newArticleScrap = new UserArticleScrap();
         newArticleScrap.setUser(user.get());
         newArticleScrap.setArticle(article.get());
@@ -62,7 +62,7 @@ public class ArticleService {
     public ResponseEntity<?> getUserArticles(String username){
         final Optional<User_> user = userRepository.getByUsername(username);
         if(user.isEmpty()){
-            final SuccessAndFailureResponse result = new SuccessAndFailureResponse("아이디가 존재하지 않습니다.",HttpStatus.BAD_REQUEST);
+            final SuccessAndFailureResponse result = new SuccessAndFailureResponse("아이디가 존재하지 않습니다.",400);
             return new ResponseEntity<>(result,HttpStatus.BAD_REQUEST);
         }
         final List<UserArticleScrap> userArticleScraps = userArticleDAO.findAllByUser_id(user.get().getId());
@@ -79,13 +79,13 @@ public class ArticleService {
         Optional<User_> user = userRepository.findByUsername(username);
 
         if(user.isEmpty()){
-            final SuccessAndFailureResponse result = new SuccessAndFailureResponse("존재하지 않는 유저입니다.",HttpStatus.BAD_REQUEST);
+            final SuccessAndFailureResponse result = new SuccessAndFailureResponse("존재하지 않는 유저입니다.",400);
             return new ResponseEntity<>(result,HttpStatus.BAD_REQUEST);
         }
 
         Optional<Article> article = articleRepository.findById(article_id);
         if(article.isEmpty()){
-            final SuccessAndFailureResponse result = new SuccessAndFailureResponse("존재하지 않는 기사입니다.",HttpStatus.BAD_REQUEST);
+            final SuccessAndFailureResponse result = new SuccessAndFailureResponse("존재하지 않는 기사입니다.",400);
             return new ResponseEntity<>(result,HttpStatus.BAD_REQUEST);
         }
 
@@ -107,7 +107,7 @@ public class ArticleService {
             newArticleScrap.setArticle(article.get());
             userArticleDAO.delete(newArticleScrap);
 
-            final SuccessAndFailureResponse successAndFailureResponse = new SuccessAndFailureResponse("좋아요를 취소 했습니다.",HttpStatus.OK);
+            final SuccessAndFailureResponse successAndFailureResponse = new SuccessAndFailureResponse("좋아요를 취소 했습니다.",200);
             return new ResponseEntity<>(successAndFailureResponse,HttpStatus.OK);
         }
 
@@ -125,7 +125,7 @@ public class ArticleService {
         userArticleDAO.save(newArticleScrap);
 
         //메시지 출력
-        final SuccessAndFailureResponse successAndFailureResponse = new SuccessAndFailureResponse("좋아요를 눌렀습니다.",HttpStatus.OK);
+        final SuccessAndFailureResponse successAndFailureResponse = new SuccessAndFailureResponse("좋아요를 눌렀습니다.",200);
         return new ResponseEntity<>(successAndFailureResponse,HttpStatus.OK);
     }
 

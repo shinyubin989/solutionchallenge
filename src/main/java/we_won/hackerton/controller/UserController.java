@@ -26,10 +26,20 @@ public class UserController {
     ){
         if(bindingResult.hasErrors()){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } else if (userService.duplicateUsernameAndNickname(dto.toEntity()).getStatusCode().is4xxClientError()) {
+            ResponseEntity<?> responseEntity = userService.duplicateUsernameAndNickname(dto.toEntity());
+            SuccessAndFailureResponse successAndFailureResponse = null;
+            if (responseEntity.getBody() == "해당 닉네임이 이미 존재합니다.") {
+                successAndFailureResponse = new SuccessAndFailureResponse(responseEntity.getBody(), 400);
+            } else if(responseEntity.getBody() == "해당 이메일이 이미 존재합니다."){
+                successAndFailureResponse = new SuccessAndFailureResponse(responseEntity.getBody(), 400);
+            }
+            return new ResponseEntity<>(successAndFailureResponse, HttpStatus.BAD_REQUEST);
+            
         }
 
         userService.saveOrUpdateAccount(dto.toEntity());
-        SuccessAndFailureResponse successAndFailureResponse = new SuccessAndFailureResponse("회원가입에 성공했습니다.",HttpStatus.CREATED);
+        SuccessAndFailureResponse successAndFailureResponse = new SuccessAndFailureResponse("회원가입에 성공했습니다.", 201);
         return new ResponseEntity<>(successAndFailureResponse,HttpStatus.CREATED);
     }
 
