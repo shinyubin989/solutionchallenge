@@ -31,6 +31,7 @@ public class Article extends BaseEntity{
     @Column(nullable = false)
     private long like_num = 0;
 
+    //helo
     @Column(nullable = false)
     private long comment_num = 0;
 
