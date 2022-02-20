@@ -2,6 +2,8 @@ package we_won.hackerton.service;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -48,6 +50,18 @@ public class UserServiceImpl implements UserService {
         user.encodePassword(this.passwordEncoder);
 
         return this.userRepository.save(user);
+    }
+
+    public ResponseEntity<?> duplicateUsernameAndNickname(User_ user) {
+        boolean isNicknamePresent = userRepository.findByNickname(user.getNickname()).isPresent();
+        boolean isUsernamePresent = userRepository.findByUsername(user.getUsername()).isPresent();
+        if (isNicknamePresent) {
+            return new ResponseEntity<>("해당 닉네임이 이미 존재합니다.", HttpStatus.BAD_REQUEST);
+        } else if (isUsernamePresent) {
+            return new ResponseEntity<>("해당 이메일이 이미 존재합니다.", HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
     }
 
 }
