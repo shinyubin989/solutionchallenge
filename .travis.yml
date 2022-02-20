@@ -11,7 +11,7 @@ branches:
 
 # 빌드 전에 gradlew의 권한을 추가한다.
 before_install:
-  - chmod +x gradlew
+  - chmod 777 gradlew
 
 # Travis CI 서버의 Home
 # gradle을 통하여 의존성을 받게 되면 이를 캐시하여 배포할 때 마다 다시 받지 않도록 설정한다.
@@ -38,7 +38,7 @@ deploy:
   - provider: s3
     access_key_id: $AWS_ACCESS_KEY # Travis settings에 설정된 값
     secret_access_key: $AWS_SECRET_KEY # Travis settings에 설정된 값
-    bucket: freelec-springboot-build # S3 버킷
+    bucket: freelect-springboot-build # S3 버킷
     region: ap-northeast-2
     skip_cleanup: true
     acl: private # zip 파일 접근을 private으로
