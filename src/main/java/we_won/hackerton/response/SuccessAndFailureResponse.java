@@ -9,9 +9,9 @@ import org.springframework.http.HttpStatus;
 public class SuccessAndFailureResponse<T> extends BasicResponse {
 
     private T message;
-    private HttpStatus status;
+    private int status;
 
-    public SuccessAndFailureResponse(T message, HttpStatus status) {
+    public SuccessAndFailureResponse(T message, int status) {
         this.message = message;
         this.status = status;
     }
