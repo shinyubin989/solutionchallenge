@@ -18,8 +18,6 @@ public class UserFormDTO {
 
     private String nickname;
 
-    private String tel;
-
     private final UserRole role = UserRole.USER;
 
     public User_ toEntity(){
@@ -28,7 +26,6 @@ public class UserFormDTO {
                 .password(this.password)
                 .role(this.role)
                 .nickname(this.nickname)
-                .tel(this.tel)
                 .build();
     }
 }

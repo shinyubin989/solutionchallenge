@@ -21,9 +21,6 @@ public class User_ extends BaseEntity{
     private String nickname;
 
     @Column(nullable = false)
-    private String tel;
-
-    @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
     private UserRole role;
 
@@ -32,11 +29,10 @@ public class User_ extends BaseEntity{
     }
 
     @Builder
-    public User_(String username, String password, UserRole role,String nickname, String tel) {
+    public User_(String username, String password, UserRole role,String nickname) {
         this.username = username;
         this.password = password;
         this.role = role;
         this.nickname = nickname;
-        this.tel = tel;
     }
 }
