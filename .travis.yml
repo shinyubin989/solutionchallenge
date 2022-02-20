@@ -46,7 +46,7 @@ deploy:
     wait-until-deployed: true
     on:
       branch: main
-  # 새롭게 추가된 부분
+  # 새롭게 추가된 부분 1
   - provider: codedeploy
       access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
       secret_access_key: $AWS_SECRET_KEY # Travis repo settings에 설정된 값
