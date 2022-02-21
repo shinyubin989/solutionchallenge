@@ -118,8 +118,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         skipPath.add(new AntPathRequestMatcher("/api/articles", HttpMethod.GET.name()));
         skipPath.add(new AntPathRequestMatcher("/api/users/login", HttpMethod.POST.name()));
         skipPath.add(new AntPathRequestMatcher("/api/comments/{articleId}", HttpMethod.GET.name()));
-        skipPath.add(new AntPathRequestMatcher("/api/users/authenticate/mail", HttpMethod.POST.name()));
-        skipPath.add(new AntPathRequestMatcher("/api/users/authenticate/verifyCode", HttpMethod.POST.name()));
+        skipPath.add(new AntPathRequestMatcher("/api/authenticate/mail/{email}", HttpMethod.POST.name()));
+        skipPath.add(new AntPathRequestMatcher("/api/authenticate/verifyCode/{code}", HttpMethod.POST.name()));
 
         FilterSkipMatcher matcher = new FilterSkipMatcher(
                 skipPath,
