@@ -3,6 +3,8 @@ package we_won.hackerton.emailAuthentication;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Email;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/users/authenticate")
@@ -10,12 +12,13 @@ public class EmailController {
 
   private final EmailServiceImpl emailService;
 
-  @GetMapping("/mail")
-  public void emailConfirm(@RequestBody String email) throws Exception {
+  @PostMapping("/mail/{email}")
+  public void emailConfirm(@PathVariable String email) throws Exception {
+    System.out.println("emailcheck = " + email);
     emailService.sendSimpleMessage(email);
   }
 
-  @GetMapping("/verifyCode")
+  @PostMapping("/verifyCode")
   public boolean verifyCode(@RequestBody String code) {
     boolean result = false;
 
