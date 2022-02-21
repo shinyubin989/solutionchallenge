@@ -7,7 +7,7 @@ import javax.validation.constraints.Email;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/users/authenticate")
+@RequestMapping("/api/authenticate")
 public class EmailController {
 
   private final EmailServiceImpl emailService;
@@ -18,8 +18,8 @@ public class EmailController {
     emailService.sendSimpleMessage(email);
   }
 
-  @PostMapping("/verifyCode")
-  public boolean verifyCode(@RequestBody String code) {
+  @PostMapping("/verifyCode/{code}")
+  public boolean verifyCode(@PathVariable String code) {
     boolean result = false;
 
     if (EmailServiceImpl.ePw.equals(code)) {
