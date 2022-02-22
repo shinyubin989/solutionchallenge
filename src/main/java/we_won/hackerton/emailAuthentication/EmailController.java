@@ -18,14 +18,16 @@ public class EmailController {
     emailService.sendSimpleMessage(email);
   }
 
-  @PostMapping("/verifyCode/{code}")
-  public boolean verifyCode(@PathVariable String code) {
+  @PostMapping("/verifyCode/{email}/{code}")
+  public EmailResponse verifyCode(@PathVariable String code, @PathVariable(value = "email") String email) {
     boolean result = false;
 
     if (EmailServiceImpl.ePw.equals(code)) {
       result = true;
     }
-    return result;
+
+    EmailResponse emailResponse = new EmailResponse(email,result);
+    return emailResponse;
   }
 
 
